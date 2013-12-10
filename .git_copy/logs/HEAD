@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 22577090978f6f7b1f9ad07e4a6f27d7f7de3de4 tianshuai <tianshuaiorc@sina.com> 1381835668 +0800	clone: from git@gitcafe.com:cv/shijia.git
+22577090978f6f7b1f9ad07e4a6f27d7f7de3de4 c7bb6c919dfaeda9911b271b6b486a93b624c36f tianshuai <tianshuaiorc@sina.com> 1381835736 +0800	commit: first_test
+c7bb6c919dfaeda9911b271b6b486a93b624c36f 21e049476740e980091d5d85a6da365cac7286ad tianshuai <tianshuaiorc@sina.com> 1381836958 +0800	commit: create frame_work
+21e049476740e980091d5d85a6da365cac7286ad 475b01db361a5b534a6adf6d308bac1e13d75330 tianshuai <tianshuaiorc@sina.com> 1381837829 +0800	commit: modify readme info
+475b01db361a5b534a6adf6d308bac1e13d75330 4cdf704ca2c16d82d36c6c3cbafbd6349c301c32 tianshuai <tianshuaiorc@sina.com> 1381838605 +0800	merge tmp: Merge made by the 'recursive' strategy.
+4cdf704ca2c16d82d36c6c3cbafbd6349c301c32 56c10a70401eb55fe291df9998436e068ba8c00b tianshuai <tianshuaiorc@sina.com> 1382005728 +0800	commit: add admin
+56c10a70401eb55fe291df9998436e068ba8c00b 658fdece9f93fa0e878a5d85d96ec9cf36e7cb19 tianshuai <tianshuaiorc@sina.com> 1382092180 +0800	commit: add admin
+658fdece9f93fa0e878a5d85d96ec9cf36e7cb19 0e1de301cd3facd3c06298b1075df2212ed94edd tianshuai <tianshuaiorc@sina.com> 1382436389 +0800	commit: modify admin
+0e1de301cd3facd3c06298b1075df2212ed94edd 7eddad7e7e99d0f92bcef264237a7c2441b9dad1 tianshuai <tianshuaiorc@sina.com> 1382522428 +0800	commit: modify gitignore
+7eddad7e7e99d0f92bcef264237a7c2441b9dad1 2f82e5b423526715b4dcfadc204cefb788f07fb4 tianshuai <tianshuaiorc@sina.com> 1382696337 +0800	commit: modify posts_controller

@@ -1,0 +1,54 @@
+
+  <%= form_for([:admin,@post], html: { id: "", role: 'form', multipart: true }) do |f| %>
+	  <% if @post.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= @post.errors.count %>处错误提示: </h2>
+
+		  <ul>
+		  <% @post.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		  <% end %>
+		  </ul>
+		</div>
+	  <% end %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<input type="hidden" name="asset_ids" id="editor_ids" />
+    <div class="form-group">
+      <%= f.label :title, '名称' %>
+  	  <%= f.text_field :title, class: 'form-control' %>
+    </div>
+
+	<div class="form-group">
+      <%= f.label :category_id, '分类', class: 'clearfix' %>
+	  <%= f.select :category_id, options_for_select(Category.kind_options(1)), class: 'form-control' %> 
+	</div>
+
+	<span class="blank10 clearfix"></span>
+    <div class="form-group">
+  	  <%= f.label :content, '描述' %>
+  	  <%= f.text_area :content, id: 'kind_editor', class: 'form-control' %>
+	</div>
+    <div class="form-group">
+      <%= f.label :sort, '排序' %>
+  	  <%= f.number_field :sort, class: 'form-control' %>
+    </div>
+	<div class="form-group">
+	  <%= f.label :publish, ' 是否发布:' %>
+	  <%= f.radio_button :publish, 0 %>否 &nbsp;
+	  <%= f.radio_button :publish, 1 %>是 &nbsp;
+	</div>
+	<div class="form-group">
+	  <%= f.label :state, ' 状态:' %>
+	  <%= f.radio_button :state, 0 %>关闭&nbsp;
+	  <%= f.radio_button :state, 1 %>开启&nbsp;
+	</div>
+	<div class="form-group">
+	  <%= f.label :stick, ' 是否推荐:' %>
+	  <%= f.radio_button :stick, 0 %>否 &nbsp;
+	  <%= f.radio_button :stick, 1 %>是 &nbsp;
+	</div>
+  <div class="actions">
+    <%= f.submit '保存' %>
+	<%=link_to '返回', admin_categories_path %>
+  </div>
+  <% end %>

@@ -1,0 +1,40 @@
+<%=provide(:title, '编辑块')%>
+<% content_for :scripts do %>
+    <%= javascript_include_tag "kindeditor-4.1.9/kindeditor-min" %>
+    <script style="text/javascript">
+      var item_id = <%= params[:id] || '' %>;
+      var type = 'Post';
+	  var user_id = <%=current_user.id%>;
+      var options = {
+        width: '800px',
+        height: '500px',
+        uploadJson: '/upload/editor?item_id='+item_id+'&type='+type+'&user_id='+user_id
+
+      };
+      KindEditor.ready(function(K) {
+        window.editor = K.create('#kind_editor', options)
+      });
+
+    //添加删除分类
+    function add_and_drop_category()
+    {
+      var obj = $(this);
+      var cate_id = obj.attr('cate_id');
+      obj.addClass('current').siblings('a').removeClass('current');
+      obj.parent('div').find('.category_tag').val(cate_id);
+    }
+
+	</script>
+<%end%>
+
+<div class="row">
+	<div class="col-md-2">
+		<%=render "admin/base/left_bar"%>
+	</div>
+	<div class="col-md-10">
+	  <%= render "admin/posts/tool_bar"%>
+	  <span class="blank20"></span>
+	  <%= render 'form' %>
+	</div>
+  </div>
+</div>

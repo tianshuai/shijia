@@ -1,0 +1,68 @@
+<%=provide(:title, '回收站')%>
+<div class="row">
+	<div class="col-md-2">
+		<%=render "admin/base/left_bar"%>
+	</div>
+	<div class="col-md-10">
+      <!--Body content-->
+          <%= render "admin/posts/tool_bar"%>
+          <span class="blank10"></span>
+          <div class="sub_operation clearfix">
+             <div class="left_operation">
+                选择：
+                <a id="select_all" class="pointer">全选 </a>
+                ｜
+                <a id="select_un" class="pointer">反选 </a>
+                ｜
+                <a id="select_cancel" class="pointer">取消 </a>
+              </div>
+			  <div class="clearfix">
+				<div class="operate_box clearfix">
+					<%=link_to('批量删除', {action: 'destroy_true_more', format: 'js'}, class: "select_post")%>
+					<%=link_to('批量还原', {action: 'restore_more', format: 'js'}, class: "select_post")%>
+				</div>
+			  </div>
+          </div>
+          <span class="blank10"></span>
+          <table class="admin-box">
+            <thead>
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>标题</th>
+                <th>封面</th>
+				<th>分类</th>
+                <th>创建人</th>
+				<th>发布时间</th>
+                <th>管理</th>
+              </tr>
+            </thead>
+            <tbody >
+              <%@posts.each do |b|%>
+				<tr id="post_<%=b.id%>" class="user_unaudited">
+					<td><label><%=check_box_tag "content[ids][]", b.id %></label></td>
+					<td><%=b.id%></td>
+					<td><%= link_to truncate(b.title, length: 10), b.view_url, title: b.title, target: '_blank' %></td>
+					<td>
+
+						<span>无</span>
+
+					</td>
+					<td><%=b.category.name if b.category.present?%></td>
+					<td><%=b.user.name if b.user.present?%></td>
+					<td><%=b.created_at.strftime("%y.%m.%d")%></td>
+				  <td>
+					<%=link_to "还原", { action: 'restore', id: b.id }, data: { confirm: "确认执行此操作?" }, remote: true, method: :post %> |
+					<%=link_to "删除", { action: 'destroy_true', id: b.id }, data: { confirm: "确认执行此操作?" }, remote: true, method: :delete %>
+				  </td>
+				</tr>
+              <%end%>
+            </tbody>
+          </table>
+          <%= will_paginate @posts if @posts.present? %>
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+

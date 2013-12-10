@@ -1,0 +1,47 @@
+<div class="admin_left_menu"> 
+        <dl> 
+            <dt><a href="#" class="">系统信息</a></dt> 
+            <dd id="items0" style="display: block;"> 
+                <ul> 
+					<li class="<%= css_current?(@css_admin_base) %>"><%= link_to "基本信息", admin_home_path %></li>
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="">用户管理</a></dt> 
+            <dd id="items0" style="display: block;"> 
+                <ul> 
+                    <li class="<%= css_current?(@css_admin_user) %>"><%= link_to "用户列表", admin_users_path %></li> 
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="">分类管理</a></dt> 
+            <dd id="items1" style="display: block;"> 
+                <ul> 
+					<li class="<%= css_current?(@css_admin_cate) %>"><%= link_to "分类列表", admin_categories_path %></li>
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="">内容管理</a></dt> 
+            <dd id="items2" style="display: block;"> 
+                <ul> 
+					<li class="<%= css_current?(@css_admin_posts) %>"><%= link_to "文章列表", admin_posts_path %></li>
+					<li class="<%= css_current?(@css_admin_posts) %>"><%= link_to "回收站", recycle_admin_posts_path %></li>
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="">栏目管理</a></dt> 
+            <dd id="items2" style="display: block;"> 
+                <ul> 
+					<li class="<%= css_current?(@css_admin_block) %>"><%= link_to "区块", admin_blocks_path %></li>
+					<li class="<%= css_current?(@css_admin_column_space) %>"><%= link_to "栏目位", admin_column_spaces_path %></li>
+					<li class="<%= css_current?(@css_admin_column) %>"><%= link_to "栏目", admin_columns_path %></li>
+                </ul> 
+            </dd> 
+        </dl> 
+
+    </div>
+
