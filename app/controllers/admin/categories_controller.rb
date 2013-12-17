@@ -51,7 +51,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.find(params[:id])
 
     respond_to do |format|
-      if @category.update_attributes(params.require(:category).permit!)
+      if @category.update(params.require(:category).permit!)
         format.html { redirect_to admin_categories_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
@@ -100,7 +100,7 @@ class Admin::CategoriesController < Admin::BaseController
   def ajax_set_state
 	@category = Category.find(params[:id])
 	if @category.present?
-	  @category.update_attribute(:state, params[:type])
+	  @category.update(state: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else

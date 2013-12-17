@@ -43,7 +43,7 @@ class Admin::BlocksController < Admin::BaseController
     @block = Block.find(params[:id])
 
     respond_to do |format|
-      if @block.update_attributes(params.require(:block).permit!)
+      if @block.update(params.require(:block).permit!)
         format.html { redirect_to admin_blocks_path, notice: '更新成功!' }
         format.json { head :no_content }
       else

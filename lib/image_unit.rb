@@ -4,7 +4,7 @@ module ImageUnit
   class Upload
   
     #保存附件
-    #type::1作品图片,／２.编辑器图片；３.栏目块图片
+    #type::1.作品图片; ２.编辑器图片; ３.栏目块图片; 4.新闻封面;
     def self.save_asset(file,type,options={})
 
 	  # 初始化参数
@@ -26,6 +26,8 @@ module ImageUnit
 		resize = CONF['image_editor_format']
 	  when 3
 		resize = CONF['image_column_format']
+	  when 4
+		resize = CONF['image_post_cover_format']
       else
         resize = CONF['image_editor_format']
       end

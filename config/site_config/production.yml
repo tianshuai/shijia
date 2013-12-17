@@ -11,6 +11,12 @@ verify_img_type: ["JPG","JPEG","PJPEG","PNG","X-PNG","GIF"]
 #附件目录
 asset_path: 'public/'
 
+  max_size: 5
+  min_w_h: [50,50]
+  b: 780
+  m: [180,120]
+  s: [50,50]
+
 #作品图规格
 image_art_format:
   #图片绝对路径
@@ -27,6 +33,26 @@ image_editor_format:
   path: 'upload/images/editor/'
   max_size: 5
   min_w_h: [50,50]
+  b: 780
+  m: [180,120]
+  s: [50,50]
+
+#新闻封面图规格
+image_post_cover_format:
+  #图片绝对路径
+  path: 'upload/images/post_cover/'
+  max_size: 2
+  min_w_h: [30,30]
+  b: 780
+  m: [180,120]
+  s: [100,80]
+
+#栏目图片规格
+image_column_format:
+  #图片绝对路径
+  path: 'upload/images/column/'
+  max_size: 2
+  min_w_h: [30,30]
   b: 780
   m: [180,120]
   s: [50,50]

@@ -59,7 +59,7 @@ class Post < ActiveRecord::Base
   #最新的
   scope :recent,			-> { order("created_at DESC") }
   #按自定义排序
-  scope :order_b,           -> { order("sort DESC") }
+  scope :order_b,           -> { order(sort: :desc) }
   #已发布的
   scope :published,         -> { where(publish: PUBLISH[:yes]) }
   #未发布的
@@ -98,6 +98,18 @@ class Post < ActiveRecord::Base
   #链接地址
   def view_url
 	''
+  end
+
+  #获取封面
+  def cover_img
+	return false if self.cover_id.blank?
+	begin
+	  asset = Asset.find(self.cover_id)
+	rescue ActiveRecord::RecordNotFound
+	  return false
+	else
+	  return asset
+	end
   end
 
   #删除（非物理）

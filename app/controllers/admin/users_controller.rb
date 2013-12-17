@@ -33,7 +33,7 @@ class Admin::UsersController < Admin::BaseController
   def ajax_set_state
 	@user = User.find(params[:id].to_i)
 	if @user.present?
-	  @user.update_attribute(:state, params[:type])
+	  @user.update(state: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else
@@ -53,7 +53,7 @@ class Admin::UsersController < Admin::BaseController
 	  role_id = params[:role_id] || 1
 	  arr.split(',').each do |id|
 		@user = User.find(id.to_i)
-		@user.update_attribute(:role_id, role_id) if @user.present?
+		@user.update(role_id: role_id) if @user.present?
 	  end
 	  @success = true
 	  @note = "设置成功"

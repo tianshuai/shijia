@@ -25,8 +25,8 @@ class Category < ActiveRecord::Base
 
   ##过滤
   #排序
-  scope :recent,      	-> { order("id DESC") }
-  scope :order_b,		-> { order("sort DESC") }
+  scope :recent,      	-> { order(id: :desc) }
+  scope :order_b,		-> { order(sort: :desc) }
   #父分类
   scope :parent_level,	-> { where(pid: 0) }
   #通过父类ID查看子类

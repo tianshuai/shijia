@@ -27,7 +27,7 @@ class ColumnSpace < ActiveRecord::Base
 
   ##过滤
   #排序
-  scope :recent,      	-> { order("id DESC") }
+  scope :recent,      	-> { order(id: :desc) }
   scope :normal,		-> { where(state: STATE[:ok]) }
 
 

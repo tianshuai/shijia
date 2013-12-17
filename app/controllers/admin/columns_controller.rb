@@ -6,14 +6,14 @@ class Admin::ColumnsController < Admin::BaseController
     @css_admin_column = true
   end
 
-  #分类列表
+  #文章列表
   def index
 	@css_column_list = true
-    @columns = Column.paginate(:page => params[:page], :per_page => 10)
+    @columns = Column.recent.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
 
-  #新的分类
+  #新的文章
   def new
     @column = Column.new
 
@@ -60,7 +60,7 @@ class Admin::ColumnsController < Admin::BaseController
     @column = Column.find(params[:id])
 
     respond_to do |format|
-      if @column.update_attributes(params.require(:column).permit!)
+      if @column.update(params.require(:column).permit!)
 		  if params[:asset_id]
 			#获得文件/格式
 			file = params[:asset_id]
@@ -125,7 +125,7 @@ class Admin::ColumnsController < Admin::BaseController
   def ajax_set_state
 	@column = Column.find(params[:id])
 	if @column.present?
-	  @column.update_attribute(:state, params[:type])
+	  @column.update(state: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else

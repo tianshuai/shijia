@@ -31,6 +31,26 @@ image_editor_format:
   m: [180,120]
   s: [50,50]
 
+#新闻封面图规格
+image_post_cover_format:
+  #图片绝对路径
+  path: 'upload/images/post_cover/'
+  max_size: 2
+  min_w_h: [30,30]
+  b: 780
+  m: [180,120]
+  s: [100,80]
+
+#栏目图片规格
+image_column_format:
+  #图片绝对路径
+  path: 'upload/images/column/'
+  max_size: 2
+  min_w_h: [30,30]
+  b: 780
+  m: [180,120]
+  s: [50,50]
+
 #头像规格(备用)
 image_avatar_format:
   #图片绝对路径

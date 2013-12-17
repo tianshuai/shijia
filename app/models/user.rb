@@ -78,11 +78,11 @@ class User < ActiveRecord::Base
 
   ##过滤
   #排序
-  scope :recent,      	-> { order("id DESC") }
+  scope :recent,      	-> { order(id: :desc) }
   #个人
   scope :personal,    	-> { where(kind: KIND[:personal]) }
   #最近登录排序
-  scope :last_order,	-> { desc(:last_time) }
+  scope :last_order,	-> { order(last_time: :desc) }
 
   ##
   #方法

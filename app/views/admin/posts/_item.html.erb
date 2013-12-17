@@ -3,10 +3,12 @@
     <td><%=b.id%></td>
 	<td><%= link_to truncate(b.title, length: 10), b.view_url, title: b.title, target: '_blank' %></td>
     <td>
-
-        <span>无</span>
-
-    </td>
+		<% if b.cover_img.present? %>
+			<%= image_tag( "/#{b.cover_img.url('s')}", width: 100, height: 80 ) %>
+		<%else%>
+			<span>无</span>
+		<%end%>
+	</td>
 	<td><%=b.category.name if b.category.present?%></td>
 	<td><%=b.user.name if b.user.present?%></td>
     <td class="show_state_<%=b.id%>"><%=b.state==0 ? '禁用' : '正常'%></td>

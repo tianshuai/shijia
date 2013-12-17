@@ -42,7 +42,7 @@ class Admin::ColumnSpacesController < Admin::BaseController
     @column_space = ColumnSpace.find(params[:id])
 
     respond_to do |format|
-      if @column_space.update_attributes(params.require(:column_space).permit!)
+      if @column_space.update(params.require(:column_space).permit!)
         format.html { redirect_to admin_column_spaces_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
@@ -89,7 +89,7 @@ class Admin::ColumnSpacesController < Admin::BaseController
   def ajax_set_state
 	@column_space = ColumnSpace.find(params[:id])
 	if @column_space.present?
-	  @column_space.update_attribute(:state, params[:type])
+	  @column_space.update(state: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else

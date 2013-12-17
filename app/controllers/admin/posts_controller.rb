@@ -19,7 +19,7 @@ class Admin::PostsController < Admin::BaseController
     @posts = Post.news.deleted.order_b.recent.paginate(:page => params[:page], :per_page => 10)
   end
 
-  #新的分类
+  #新的
   def new
     @post = Post.new
     respond_to do |format|
@@ -47,21 +47,23 @@ class Admin::PostsController < Admin::BaseController
         #保存封面图
         if params[:asset_id]
           #获得文件/格式
-          file = params[:asset_id]
+		  file = params[:asset_id]
           file_temp = file.tempfile
-          file_name = file.original_filename
+		  file_name = file.original_filename
+		  user_id = params[:user_id].to_i
           #上传
-          result = ImageUnit::Upload.save_asset(file_temp,2)
-          if result[:result]
-            result[:file_name] = file_name
+          result = ImageUnit::Upload.save_asset(file_temp,4, { user_id: user_id, filename: file_name, img_kind: ['o','s'] })
+		  if result[:result]
+            result[:name] = file_name
             result[:relateable_id] = @post.id
             result[:relateable_type] = 'Post'
+	  	    result[:kind] = 2
             hash = collect_asset(result)
             asset = Asset.new(hash)
             if asset.save
-              @post.update_attribute(:asset_id, asset.id )
+              @post.update(cover_id: asset.id )
             end
-          end
+		  end
         end
         #保存编辑器图片
         if params[:asset_ids]
@@ -80,7 +82,6 @@ class Admin::PostsController < Admin::BaseController
     end
   end
 
-
   def update
     @post = Post.find(params[:id])
 
@@ -89,23 +90,23 @@ class Admin::PostsController < Admin::BaseController
         #保存封面图
         if params[:asset_id]
           #获得文件/格式
-          file = params[:asset_id]
+		  file = params[:asset_id]
           file_temp = file.tempfile
-          file_name = file.original_filename
+		  file_name = file.original_filename
+		  user_id = params[:user_id].to_i
           #上传
-          result = ImageUnit::Upload.save_asset(file_temp,2)
-          if result[:result]
-            result[:file_name] = file_name
+          result = ImageUnit::Upload.save_asset(file_temp,4, { user_id: user_id, filename: file_name, img_kind: ['o','s'] })
+		  if result[:result]
+            result[:name] = file_name
             result[:relateable_id] = @post.id
             result[:relateable_type] = 'Post'
+	  	    result[:kind] = 2
             hash = collect_asset(result)
             asset = Asset.new(hash)
             if asset.save
-              #删除原有封面图
-              @post.cover.destroy if @post.cover.present?
-              @post.update_attribute(:asset_id, asset.id )
+              @post.update(cover_id: asset.id )
             end
-          end
+		  end
         end
         format.html { redirect_to admin_posts_path, notice: '更新成功!' }
         format.json { head :no_content }
@@ -220,7 +221,7 @@ class Admin::PostsController < Admin::BaseController
   def ajax_set_state
 	@post = Post.find(params[:id])
 	if @post.present?
-	  @post.update_attribute(:state, params[:type])
+	  @post.update(state: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else
@@ -237,7 +238,7 @@ class Admin::PostsController < Admin::BaseController
   def ajax_set_stick
 	@post = Post.find(params[:id])
 	if @post.present?
-	  @post.update_attribute(:stick, params[:type])
+	  @post.update(stick: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else
@@ -254,7 +255,7 @@ class Admin::PostsController < Admin::BaseController
   def ajax_set_publish
 	@post = Post.find(params[:id])
 	if @post.present?
-	  @post.update_attribute(:publish, params[:type])
+	  @post.update(publish: params[:type])
 	  @success = true
 	  @notice = '操作成功!'
 	else
